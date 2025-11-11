@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Math Quiz Trivia</string>
+    <string name="True">True</string>
+    <string name="False">False</string>
+    <string name ="Q1Q1_false">Imaginary numbers are real numbers</string><!--false-->
+    <string name ="Q1Q2_true">3 is a factor of 9 </string><!--true-->
+    <string name ="Q1Q3_true">676 is a perfect square </string><!--true-->
+    <string name ="Q1Q4_false">Pi is a rational number</string><!--false-->
+    <string name ="Q1Q5_false">51 is not a prime number </string><!--false-->
+    <string name ="result">You Got </string>
+
 </resources>
