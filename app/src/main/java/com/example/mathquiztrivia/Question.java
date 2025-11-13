@@ -1,32 +1,36 @@
 package com.example.mathquiztrivia;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
-public class Question {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Question extends AppCompatActivity {
 
 private final  String question;
 
 private final boolean answer;
 
-private final ImageView image;
+private  Drawable image;
+private ImageView picture;
     public Question(String question, boolean answer){
         this.question = question;
         this.answer = answer;
     }
-    public Question(String question, boolean answer, ImageView image){
+    public Question(String question, boolean answer, Drawable image){
         this.question=question;
         this.answer =  answer;
         this.image = image;
     }
-    public void setImage(ImageView image){
-        ((ImageView)findViewById(R.id.picture)).setImageResource(image);
+    public static void setImage(Drawable image, ImageView picture){
+        picture.setImageDrawable(image);
     }
     public boolean getAnswer(){
         return answer;
     }
-    public String getQuestion(){
+    public String getStatement(){
         return question;
     }
-    public ImageView getImage(){
+    public Drawable getImage(){
         return image;
     }
 
