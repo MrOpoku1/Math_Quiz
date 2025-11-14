@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 new Question (getString(R.string.Q1Q4_false), false,q1q4),
                 new Question(getString(R.string.Q1Q5_false), false,q1q5)
         };
-            Statement.setText(questions[questionNum-1].getStatement());
-            Question.setImage(questions[questionNum-1].getImage(),picture);
+            Statement.setText(questions[questionNum].getStatement());
+            Question.setImage(questions[questionNum].getImage(),picture);
 
 
 
@@ -59,14 +59,7 @@ public class MainActivity extends AppCompatActivity {
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                if(!(questionNum<questions.length)){
 
-                    String a = numCorrect + "/" + questions.length;
-                    result.setText(a);
-                    Return.setVisibility(View.VISIBLE);
-                    result.setVisibility(View.VISIBLE);
-
-                }
                if(questions[questionNum].getAnswer()){
                    Toast.makeText(v.getContext(), "Correct!", Toast.LENGTH_SHORT).show();
                    numCorrect++;
@@ -75,7 +68,19 @@ public class MainActivity extends AppCompatActivity {
 
                }
                questionNum++;
-               Statement.setText(questions[questionNum].getStatement());
+                if(questionNum==questions.length){
+                    String a = numCorrect + "/" + questions.length;
+                    result.setText(a);
+                    trueButton.setVisibility(View.INVISIBLE);
+                    falseButton.setVisibility(View.INVISIBLE);
+                    picture.setVisibility(View.INVISIBLE);
+                    Return.setVisibility(View.VISIBLE);
+                    result.setVisibility(View.VISIBLE);
+                    Statement.setVisibility(View.INVISIBLE);
+
+                    return;
+                }
+                Statement.setText(questions[questionNum].getStatement());
                Question.setImage(questions[questionNum].getImage(),picture);
 
             }
@@ -84,21 +89,26 @@ public class MainActivity extends AppCompatActivity {
         falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                if(!(questionNum<questions.length)){
-                    String a = numCorrect + "/" + questions.length;
-                    result.setText(a);
-                    Return.setVisibility(View.VISIBLE);
-                    result.setVisibility(View.VISIBLE);
 
-                }
-                if(!questions[questionNum].getAnswer()){
-                    Toast.makeText(v.getContext(), "Incorrect...", Toast.LENGTH_SHORT).show();
+                if(!(questions[questionNum].getAnswer())){
+                    Toast.makeText(v.getContext(), "Correct!", Toast.LENGTH_SHORT).show();
                     numCorrect++;
                 } else {
-                    Toast.makeText(v.getContext(), "Correct!...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Incorrect...", Toast.LENGTH_SHORT).show();
 
                 }
                questionNum++;
+                if(questionNum==questions.length){
+                    String a = numCorrect + "/" + questions.length;
+                    result.setText(a);
+                    trueButton.setVisibility(View.INVISIBLE);
+                    falseButton.setVisibility(View.INVISIBLE);
+                    picture.setVisibility(View.INVISIBLE);
+                    Return.setVisibility(View.VISIBLE);
+                    result.setVisibility(View.VISIBLE);
+                    Statement.setVisibility(View.INVISIBLE);
+                    return;
+                }
                 Statement.setText(questions[questionNum].getStatement());
                 Question.setImage(questions[questionNum].getImage(),picture);
 
@@ -116,4 +126,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-}
+}//six sevennnn
