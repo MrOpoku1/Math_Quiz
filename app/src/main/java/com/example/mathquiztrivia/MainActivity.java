@@ -13,23 +13,26 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     Button falseButton, menuButton,trueButton;
-   TextView result;
+   TextView result, Return;
    TextView Statement;
    ImageView picture;
    Drawable q1q1,q1q2, q1q3,q1q4,q1q5;
-
+    int questionNum=0;
+    int numCorrect=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         result=(TextView)findViewById(R.id.Result);
+        Return=(TextView)findViewById(R.id.Return);
         Statement=(TextView)findViewById(R.id.Statement);
         trueButton=(Button)findViewById(R.id.True);
         falseButton=(Button)findViewById(R.id.False);
-        result.setVisibility(View.INVISIBLE);
         picture =(ImageView)findViewById(R.id.picture);
         menuButton=(Button)findViewById(R.id.menu);
+        result.setVisibility(View.INVISIBLE);
+        Return.setVisibility(View.INVISIBLE);
 
         q1q1=getDrawable(R.drawable.q1q1);
         q1q2=getDrawable(R.drawable.q1q2);
@@ -46,20 +49,34 @@ public class MainActivity extends AppCompatActivity {
                 new Question (getString(R.string.Q1Q4_false), false,q1q4),
                 new Question(getString(R.string.Q1Q5_false), false,q1q5)
         };
+            Statement.setText(questions[questionNum-1].getStatement());
+            Question.setImage(questions[questionNum-1].getImage(),picture);
 
 
 
 
-        int questionNum=1;
-        Statement.setText(questions[questionNum-1].getStatement());
-        Question.setImage(questions[questionNum-1].getImage(),picture);
 
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-               questionNum++;
+                if(!(questionNum<questions.length)){
 
-                Toast.makeText(v.getContext(), "Incorrect...", Toast.LENGTH_SHORT).show();
+                    String a = numCorrect + "/" + questions.length;
+                    result.setText(a);
+                    Return.setVisibility(View.VISIBLE);
+                    result.setVisibility(View.VISIBLE);
+
+                }
+               if(questions[questionNum].getAnswer()){
+                   Toast.makeText(v.getContext(), "Correct!", Toast.LENGTH_SHORT).show();
+                   numCorrect++;
+               } else{
+                   Toast.makeText(v.getContext(), "Incorrect...", Toast.LENGTH_SHORT).show();
+
+               }
+               questionNum++;
+               Statement.setText(questions[questionNum].getStatement());
+               Question.setImage(questions[questionNum].getImage(),picture);
 
             }
         });
@@ -67,14 +84,26 @@ public class MainActivity extends AppCompatActivity {
         falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                result.setVisibility(View.INVISIBLE);
-                Statement.setVisibility(View.INVISIBLE);
-                trueButton.setVisibility(View.INVISIBLE);
-                falseButton.setVisibility(View.INVISIBLE);
-                picture.setVisibility(View.INVISIBLE);
-                Toast.makeText(v.getContext(), "Correct!", Toast.LENGTH_SHORT).show();
+                if(!(questionNum<questions.length)){
+                    String a = numCorrect + "/" + questions.length;
+                    result.setText(a);
+                    Return.setVisibility(View.VISIBLE);
+                    result.setVisibility(View.VISIBLE);
+
+                }
+                if(!questions[questionNum].getAnswer()){
+                    Toast.makeText(v.getContext(), "Incorrect...", Toast.LENGTH_SHORT).show();
+                    numCorrect++;
+                } else {
+                    Toast.makeText(v.getContext(), "Correct!...", Toast.LENGTH_SHORT).show();
+
+                }
+               questionNum++;
+                Statement.setText(questions[questionNum].getStatement());
+                Question.setImage(questions[questionNum].getImage(),picture);
 
             }
+
         });
 
 
