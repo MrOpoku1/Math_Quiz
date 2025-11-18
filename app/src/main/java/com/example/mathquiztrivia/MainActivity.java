@@ -1,7 +1,9 @@
 package com.example.mathquiztrivia;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
@@ -10,20 +12,24 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     Button falseButton, menuButton,trueButton;
-   TextView result, Return;
+   TextView result, Return,countdown;
    TextView Statement;
    ImageView picture;
    Drawable q1q1,q1q2, q1q3,q1q4,q1q5;
+   CountDownTimer timer;
     int questionNum=0;
     int numCorrect=0;
+    Question []questions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        countdown = findViewById(R.id.Countdown);
         result=(TextView)findViewById(R.id.Result);
         Return=(TextView)findViewById(R.id.Return);
         Statement=(TextView)findViewById(R.id.Statement);
@@ -55,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        startTime();
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -125,5 +131,39 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(menu);
             }
         });
+
+
+
+
+
+
+
+
+
+
+
     }
+
+    private void startTime() {
+        timer = new CountDownTimer(  3000,  1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long seconds = (millisUntilFinished / 1000) % 60;
+                String timeFormatted = String.format(Locale.getDefault(), "%d", seconds);
+                countdown.setText(timeFormatted);
+            }
+
+            @Override
+            public void onFinish() {
+                countdown.setText("0");
+                Toast.makeText(MainActivity.this, "Time's up", Toast.LENGTH_SHORT).show();
+                questionNum++;
+                //Statement.setText(questions[questionNum].getStatement());
+                Question.setImage(questions[questionNum].getImage(),picture);
+
+            }
+        }.start();
+    }
+
 }//six sevennnn
