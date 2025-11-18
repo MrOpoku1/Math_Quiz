@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startTime() {
-        timer = new CountDownTimer(  3000,  1000) {
+        timer = new CountDownTimer(  30000,  1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
