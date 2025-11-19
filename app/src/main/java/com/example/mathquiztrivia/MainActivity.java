@@ -19,11 +19,12 @@ public class MainActivity extends AppCompatActivity {
     Button falseButton, menuButton,trueButton;
    TextView result, Return,countdown;
    TextView Statement;
-   ImageView picture;
+   ImageView picture,circle;
    Drawable q1q1,q1q2, q1q3,q1q4,q1q5;
    CountDownTimer timer;
     int questionNum=0;
     int numCorrect=0;
+
     Question []questions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
         picture =(ImageView)findViewById(R.id.picture);
         menuButton=(Button)findViewById(R.id.menu);
         result.setVisibility(View.INVISIBLE);
+        circle=(ImageView)findViewById(R.id.imageView2);
         Return.setVisibility(View.INVISIBLE);
+        MediaPlayer wrong = MediaPlayer.create(MainActivity.this,R.raw.wrong );
 
         q1q1=getDrawable(R.drawable.q1q1);
         q1q2=getDrawable(R.drawable.q1q2);
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Question[] questions = new Question[]{
+        questions = new Question[]{
                 new Question (getString(R.string.Q1Q1_false), false, q1q1),
                 new Question (getString(R.string.Q1Q2_true),true, q1q2),
                 new Question (getString(R.string.Q1Q3_true), true,q1q3),
@@ -67,9 +70,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
 
                if(questions[questionNum].getAnswer()){
+                   MediaPlayer correct = MediaPlayer.create(MainActivity.this,R.raw.correct);
+                   correct.start();
                    Toast.makeText(v.getContext(), "Correct!", Toast.LENGTH_SHORT).show();
                    numCorrect++;
                } else{
+                   //wrong.start();
                    Toast.makeText(v.getContext(), "Incorrect...", Toast.LENGTH_SHORT).show();
 
                }
@@ -83,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                     Return.setVisibility(View.VISIBLE);
                     result.setVisibility(View.VISIBLE);
                     Statement.setVisibility(View.INVISIBLE);
+                    circle.setVisibility(View.INVISIBLE);
+                    countdown.setVisibility(View.INVISIBLE);
 
                     return;
                 }
@@ -97,9 +105,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
 
                 if(!(questions[questionNum].getAnswer())){
+                    MediaPlayer correct = MediaPlayer.create(MainActivity.this,R.raw.correct);
+
+                     correct.start();
                     Toast.makeText(v.getContext(), "Correct!", Toast.LENGTH_SHORT).show();
                     numCorrect++;
                 } else {
+                    MediaPlayer wrong = MediaPlayer.create(MainActivity.this,R.raw.wrong );
+                    wrong.start();
                     Toast.makeText(v.getContext(), "Incorrect...", Toast.LENGTH_SHORT).show();
 
                 }
@@ -113,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
                     Return.setVisibility(View.VISIBLE);
                     result.setVisibility(View.VISIBLE);
                     Statement.setVisibility(View.INVISIBLE);
+                    circle.setVisibility(View.INVISIBLE);
+                    countdown.setVisibility(View.INVISIBLE);
                     return;
                 }
                 Statement.setText(questions[questionNum].getStatement());
@@ -133,19 +148,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
     }
 
     private void startTime() {
-        timer = new CountDownTimer(  30000,  1000) {
+        timer = new CountDownTimer(  15000,  1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -158,9 +164,17 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 countdown.setText("0");
                 Toast.makeText(MainActivity.this, "Time's up", Toast.LENGTH_SHORT).show();
-                questionNum++;
-                //Statement.setText(questions[questionNum].getStatement());
-                Question.setImage(questions[questionNum].getImage(),picture);
+                MediaPlayer wrong = MediaPlayer.create(MainActivity.this,R.raw.wrong );
+                wrong.start();
+                if(questionNum==4)
+                    questionNum++;
+                if(!(questionNum>4)) {
+
+                    Statement.setText(questions[questionNum].getStatement());
+                    Question.setImage(questions[questionNum].getImage(), picture);
+                }
+                if (questionNum!=5){timer.start();}
+
 
             }
         }.start();
