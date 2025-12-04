@@ -37,7 +37,7 @@
                     android:id="@+id/Q1"
                     android:layout_width="395dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/Q1Q1_title" />
+                    android:text="@string/Q1_title" />
 
 
             </LinearLayout>

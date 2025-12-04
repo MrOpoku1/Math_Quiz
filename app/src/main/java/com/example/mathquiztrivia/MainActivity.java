@@ -51,6 +51,18 @@ public class MainActivity extends AppCompatActivity {
         q1q4 = getDrawable(R.drawable.q1q4);
         q1q5 = getDrawable(R.drawable.q1q5);
 
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Intent.ACTION_SEND);{
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, "I got " + numCorrect + "/" + questions.length +" on " + getString(R.string.Q1_title) + "!") ;
+                    intent.putExtra(Intent.EXTRA_TITLE, "Check Out My Score on Math Trivia!");
+                    Intent chooser=Intent.createChooser(intent,"Share Text");
+                    startActivity(chooser);
+                }
+            }
+        });
 
         questions = new Question[]{
                 new Question(getString(R.string.Q1Q1_false), false, q1q1),
@@ -102,18 +114,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_SEND);{
-                    intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_TEXT, "Text");
-                    intent.putExtra(Intent.EXTRA_TITLE, "Text");
-                    Intent chooser=Intent.createChooser(intent,"Share Text");
-                    startActivity(chooser);
-                }
-            }
-        });
+
         falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

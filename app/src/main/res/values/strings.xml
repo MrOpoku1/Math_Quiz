@@ -8,7 +8,7 @@
     <string name ="Q1Q4_false">Pi is a rational number</string><!--false-->
     <string name ="Q1Q5_false">51 is not a prime number </string><!--false-->
     <string name ="result">You Got </string>
-    <string name="Q1Q1_title">General Math Knowledge</string>
+    <string name="Q1_title">General Math Knowledge</string>
     <string name="share">Share Score</string>
     <string name="header">Math Trivia</string>
 </resources>
