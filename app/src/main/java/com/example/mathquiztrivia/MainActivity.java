@@ -16,7 +16,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button falseButton, menuButton, trueButton;
+    Button falseButton, menuButton, trueButton, share;
     TextView result, Return, countdown;
     TextView Statement;
     ImageView picture, circle;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         countdown = findViewById(R.id.Countdown);
+        share=(Button)findViewById(R.id.shareButton);
         result = (TextView) findViewById(R.id.Result);
         Return = (TextView) findViewById(R.id.Return);
         Statement = (TextView) findViewById(R.id.Statement);
@@ -101,6 +102,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Intent.ACTION_SEND);{
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Text");
+                    intent.putExtra(Intent.EXTRA_TITLE, "Text");
+                    Intent chooser=Intent.createChooser(intent,"Share Text");
+                    startActivity(chooser);
+                }
+            }
+        });
         falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
                     Statement.setVisibility(View.INVISIBLE);
                     circle.setVisibility(View.INVISIBLE);
                     countdown.setVisibility(View.INVISIBLE);
+                    share.setVisibility(View.VISIBLE);
+
                     return;
                 }
                 Statement.setText(questions[questionNum].getStatement());
@@ -145,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent menu = new Intent(MainActivity.this, MainMenuActivity.class);
                 startActivity(menu);
+                finish();
             }
         });
 
@@ -184,11 +200,12 @@ public class MainActivity extends AppCompatActivity {
                     Statement.setVisibility(View.INVISIBLE);
                     circle.setVisibility(View.INVISIBLE);
                     countdown.setVisibility(View.INVISIBLE);
-
+                    share.setVisibility(View.VISIBLE);
                 }
             }
         }.start();
     }
+
 
     }
 //sixsevennn
