@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quiz de Mathematique</string>
+    <string name="True">Vrai</string>
+    <string name="False">Faux</string>
+    <string name="Q1Q1_false">"Les nombres imaginaires sont des nombres réels. "</string>
+    <string name="menu">menu</string>
+    <string name="Q1Q2_true">3 est un facteur de 9.</string>
+    <string name="Q1Q3_true">"676 is a perfect square "</string>
+    <string name="Q1Q4_false">Pi est un nombre rationnel.</string>
+    <string name="Q1Q5_false">"51 is not a prime number "</string>
+    <string name="result">Tu as</string>
+    <string name="Q1_title">Connaissances générales en mathématiques</string>
+    <string name="share">Share Score</string>
+    <string name="header">"Anecdotes mathématiques "</string>
+</resources>
