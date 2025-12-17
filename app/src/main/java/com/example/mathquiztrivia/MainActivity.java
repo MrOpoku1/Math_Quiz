@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     Statement.setVisibility(View.INVISIBLE);
                     circle.setVisibility(View.INVISIBLE);
                     countdown.setVisibility(View.INVISIBLE);
+                    share.setVisibility(View.VISIBLE);
 
                     return;
                 }

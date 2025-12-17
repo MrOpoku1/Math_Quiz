@@ -8,9 +8,9 @@
     <string name="Q1Q2_true">3 est un facteur de 9.</string>
     <string name="Q1Q3_true">"676 is a perfect square "</string>
     <string name="Q1Q4_false">Pi est un nombre rationnel.</string>
-    <string name="Q1Q5_false">"51 is not a prime number "</string>
+    <string name="Q1Q5_false">51 n\'est pas un nombre premier</string>
     <string name="result">Tu as</string>
     <string name="Q1_title">Connaissances générales en mathématiques</string>
-    <string name="share">Share Score</string>
+    <string name="share">Partager le score</string>
     <string name="header">"Anecdotes mathématiques "</string>
 </resources>
