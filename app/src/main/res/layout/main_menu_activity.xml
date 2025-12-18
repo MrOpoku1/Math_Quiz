@@ -28,19 +28,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/Q1"
+                android:layout_width="395dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Q1_title"
+                android:backgroundTint="#939090"/>
+
+            <Button
+                android:id="@+id/Q2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:text="@string/Q2"
+                android:backgroundTint="#939090"/>
 
-                <Button
-                    android:id="@+id/Q1"
-                    android:layout_width="395dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Q1_title" />
-
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
