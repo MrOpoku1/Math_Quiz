@@ -28,19 +28,52 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/Q1"
-                android:layout_width="395dp"
-                android:layout_height="wrap_content"
-                android:text="@string/Q1_title"
-                android:backgroundTint="#939090"/>
-
-            <Button
-                android:id="@+id/Q2"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Q2"
-                android:backgroundTint="#939090"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/Q1"
+                    android:layout_width="239dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#939090"
+                    android:text="@string/Q1_title" />
+
+                <TextView
+                    android:id="@+id/Q1_HS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/mathfont"
+                    android:gravity="center"
+                    android:text="highscore:"
+                    android:textColor="#8A7B7B"
+                    android:typeface="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/Q2"
+                    android:layout_width="243dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#939090"
+                    android:text="@string/Q2" />
+
+                <TextView
+                    android:id="@+id/Q2_HS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/mathfont"
+                    android:gravity="center"
+                    android:text="highscore:"
+                    android:textColor="#8A7B7B" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
