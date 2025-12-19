@@ -1,4 +1,5 @@
 package com.example.mathquiztrivia;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer timer;
     int questionNum = 0;
     int numCorrect = 0;
-
+    SharedPreferences  score;
+    SharedPreferences.Editor highscore;
     Question[] questions;
 
     @Override
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         circle = (ImageView) findViewById(R.id.imageView2);
         Return.setVisibility(View.INVISIBLE);
         MediaPlayer wrong = MediaPlayer.create(MainActivity.this, R.raw.wrong);
+
+        score=getSharedPreferences("highScores", Context.MODE_PRIVATE);
+        highscore = score.edit();
+        highscore.putInt("score", numCorrect);
+
 
         q1q1 = getDrawable(R.drawable.q1q1);
         q1q2 = getDrawable(R.drawable.q1q2);
@@ -169,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+    public void checkHighScore{
+        if(numCorrect>)
     }
 
     private void startTime() {
