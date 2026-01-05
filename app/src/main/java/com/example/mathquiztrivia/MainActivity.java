@@ -20,7 +20,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     Button falseButton, menuButton, trueButton, share;
-    TextView result, Return, countdown;
+    TextView result, Return, countdown,Q1_VAL;
     TextView Statement;
     ImageView picture, circle;
     Drawable q1q1, q1q2, q1q3, q1q4, q1q5;
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences  score;
     SharedPreferences.Editor highscore;
     Question[] questions;
+    int q1_VAL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +48,12 @@ public class MainActivity extends AppCompatActivity {
         result.setVisibility(View.INVISIBLE);
         circle = (ImageView) findViewById(R.id.imageView2);
         Return.setVisibility(View.INVISIBLE);
+
+
         MediaPlayer wrong = MediaPlayer.create(MainActivity.this, R.raw.wrong);
 
         score=getSharedPreferences("highScores", Context.MODE_PRIVATE);
         highscore = score.edit();
-        highscore.putInt("score", numCorrect);
 
 
         q1q1 = getDrawable(R.drawable.q1q1);
@@ -169,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                checkAndSaveHighScore();
                 Intent menu = new Intent(MainActivity.this, MainMenuActivity.class);
                 startActivity(menu);
                 finish();
@@ -177,9 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void checkHighScore{
-        if(numCorrect>)
-    }
+    //public void checkHighScore{
 
     private void startTime() {
         timer = new CountDownTimer(16000, 1000) {
@@ -220,6 +221,20 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
+    private void checkAndSaveHighScore() {
+        // Get the current high score (default to 0 if none exists)
+        int currentHighScore = score.getInt("highScore", 0);
 
+        // Check if the current score is higher
+        if (numCorrect > currentHighScore) {
+            // Save the new high score
+            highscore.putInt("highScore", numCorrect);
+            highscore.apply(); // or highscore.commit();
+            Intent intent = new Intent(MainActivity.this, MainMenuActivity.class);
+            intent.putExtra("HIGHSCORE",numCorrect);
+
+        }
     }
-//sixsevennn
+
+
+}
