@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         MediaPlayer wrong = MediaPlayer.create(MainActivity.this, R.raw.wrong);
 
         score=getSharedPreferences("highScores", Context.MODE_PRIVATE);
-        highscore = score.edit();
+
 
 
         q1q1 = getDrawable(R.drawable.q1q1);
@@ -228,10 +228,11 @@ public class MainActivity extends AppCompatActivity {
         // Check if the current score is higher
         if (numCorrect > currentHighScore) {
             // Save the new high score
+            highscore = score.edit();
             highscore.putInt("highScore", numCorrect);
             highscore.apply(); // or highscore.commit();
             Intent intent = new Intent(MainActivity.this, MainMenuActivity.class);
-            intent.putExtra("HIGHSCORE",numCorrect);
+            intent.putExtra("HIGHSCORE",score.getInt("highScore",0));
 
         }
     }

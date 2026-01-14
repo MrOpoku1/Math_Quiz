@@ -6,17 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainMenuActivity extends AppCompatActivity {
 Button Q1, Q2;
-
+TextView Q1_VAL, Q2_VAL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_activity);
         Q1=(Button)findViewById(R.id.Q1);
         Q2=(Button)findViewById(R.id.Q2);
+        Q1_VAL = (TextView)findViewById(R.id.Q1_VAL);
+        Intent intent=getIntent();
+
+
         Q1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -24,6 +30,7 @@ Button Q1, Q2;
                 startActivity(menu);
             }
         });
+
         Q2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
