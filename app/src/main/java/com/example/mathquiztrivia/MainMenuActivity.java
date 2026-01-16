@@ -1,6 +1,7 @@
 package com.example.mathquiztrivia;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,8 +21,11 @@ TextView Q1_VAL, Q2_VAL;
         Q1=(Button)findViewById(R.id.Q1);
         Q2=(Button)findViewById(R.id.Q2);
         Q1_VAL = (TextView)findViewById(R.id.Q1_VAL);
-        Intent intent=getIntent();
 
+
+        SharedPreferences prefs = getSharedPreferences("highScores", MODE_PRIVATE);
+        int highScore = prefs.getInt("HIGHSCORE", 0);
+        Q1_VAL.setText(String.valueOf(highScore));
 
         Q1.setOnClickListener(new View.OnClickListener() {
             @Override

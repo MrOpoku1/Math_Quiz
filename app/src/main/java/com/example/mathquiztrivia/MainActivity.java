@@ -27,10 +27,23 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer timer;
     int questionNum = 0;
     int numCorrect = 0;
-    SharedPreferences  score;
-    SharedPreferences.Editor highscore;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
     Question[] questions;
     int q1_VAL;
+    private void checkAndSaveHighScore() {
+        int currentHighScore = prefs.getInt("highScore", 0);
+
+        // Check if the current score is higher
+        if (numCorrect > currentHighScore) {
+            // Save the new high score
+            this.editor = prefs.edit();
+            editor.putInt("HIGHSCORE", numCorrect);
+            editor.apply();
+
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         MediaPlayer wrong = MediaPlayer.create(MainActivity.this, R.raw.wrong);
 
-        score=getSharedPreferences("highScores", Context.MODE_PRIVATE);
+        prefs =getSharedPreferences("highScores", Context.MODE_PRIVATE);
 
 
 
@@ -85,6 +98,16 @@ public class MainActivity extends AppCompatActivity {
         Statement.setText(questions[questionNum].getStatement());
         Question.setImage(questions[questionNum].getImage(), picture);
 
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAndSaveHighScore();
+                Intent menu = new Intent(MainActivity.this, MainMenuActivity.class);
+                startActivity(menu);
+                finish();
+            }
+        });
 
         startTime();
         trueButton.setOnClickListener(new View.OnClickListener() {
@@ -168,15 +191,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAndSaveHighScore();
-                Intent menu = new Intent(MainActivity.this, MainMenuActivity.class);
-                startActivity(menu);
-                finish();
-            }
-        });
+
 
 
     }
@@ -221,21 +236,7 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void checkAndSaveHighScore() {
-        // Get the current high score (default to 0 if none exists)
-        int currentHighScore = score.getInt("highScore", 0);
 
-        // Check if the current score is higher
-        if (numCorrect > currentHighScore) {
-            // Save the new high score
-            highscore = score.edit();
-            highscore.putInt("highScore", numCorrect);
-            highscore.apply(); // or highscore.commit();
-            Intent intent = new Intent(MainActivity.this, MainMenuActivity.class);
-            intent.putExtra("HIGHSCORE",score.getInt("highScore",0));
-
-        }
-    }
 
 
 }
