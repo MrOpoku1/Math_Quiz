@@ -32,6 +32,7 @@ TextView Q1_VAL, Q2_VAL;
             public void onClick(View v) {
                 Intent menu = new Intent(MainMenuActivity.this, MainActivity.class);
                 startActivity(menu);
+                finish();
             }
         });
 
@@ -40,6 +41,7 @@ TextView Q1_VAL, Q2_VAL;
             public void onClick(View v) {
                 Intent arithmetic = new Intent(MainMenuActivity.this, Arithmetic.class);
                 startActivity(arithmetic);
+                finish();
             }
         });
 

@@ -94,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475"
+        app:layout_constraintVertical_bias="0.47000003"
         tools:ignore="HardcodedText" />
 
     <ImageView
@@ -130,5 +130,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/picture" />
+
+    <EditText
+        android:id="@+id/initial"
+        android:layout_width=""
+        android:layout_height=""
+        android:layout_marginTop="256dp"
+        android:layout_marginBottom="1199dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52"
+        tools:layout_editor_absoluteX="367dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

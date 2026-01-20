@@ -12,6 +12,11 @@
     <string name="share">Share Score</string>
     <string name="header">Math Trivia</string>
     <string name="menu">menu</string>
-    <string name="Q2">Arithmetic Addition</string>
+    <string name="Q2" translatable="false">Arithmetic Addition</string>
+    <string name="Q2_Q1" translatable="false">Who is nicknamed the \"father of calculus\"?</string>
+    <string name="Q2_Q2" translatable="false">Linera algebra focuses on primarily what?</string>
+    <string name="Q2_Q3" translatable="false">What is the rule for a geometric seuence</string>
+    <string name="Q2_Q4" translatable="false">What is the rule for an Arithmetic Series</string>
+    <string name="Q1_Q5" translatable="false">What is the name of this formula?</string>
 
 </resources>
