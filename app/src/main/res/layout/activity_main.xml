@@ -15,8 +15,7 @@
         android:text="@string/menu"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -29,10 +28,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.66" />
 
     <TextView
         android:id="@+id/Result"
@@ -126,21 +125,23 @@
         android:layout_height="wrap_content"
         android:text="@string/share"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/Statement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Statement" />
+
+    <EditText
+        android:id="@+id/initials"
+        android:layout_width="146dp"
+        android:layout_height="57dp"
+        android:hint="enter initials"
+        android:imeOptions="actionDone"
+        android:textAlignment="center"
+        android:textColor="#FAC6C6"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/Statement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/picture" />
-
-    <EditText
-        android:id="@+id/initial"
-        android:layout_width=""
-        android:layout_height=""
-        android:layout_marginTop="256dp"
-        android:layout_marginBottom="1199dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52"
-        tools:layout_editor_absoluteX="367dp" />
+        app:layout_constraintTop_toBottomOf="@+id/Return" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

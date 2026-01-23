@@ -5,6 +5,9 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
@@ -14,6 +17,9 @@ import android.content.SharedPreferences;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
 
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     int numCorrect = 0;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
+    EditText initials;
     Question[] questions;
     int q1_VAL;
     private void checkAndSaveHighScore() {
@@ -58,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         falseButton = (Button) findViewById(R.id.False);
         picture = (ImageView) findViewById(R.id.picture);
         menuButton = (Button) findViewById(R.id.menu);
+        initials=(EditText)findViewById(R.id.initials);
+
         result.setVisibility(View.INVISIBLE);
         circle = (ImageView) findViewById(R.id.imageView2);
         Return.setVisibility(View.INVISIBLE);
@@ -67,13 +76,32 @@ public class MainActivity extends AppCompatActivity {
 
         prefs =getSharedPreferences("highScores", Context.MODE_PRIVATE);
 
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         q1q1 = getDrawable(R.drawable.q1q1);
         q1q2 = getDrawable(R.drawable.q1q2);
         q1q3 = getDrawable(R.drawable.q1q3);
         q1q4 = getDrawable(R.drawable.q1q4);
         q1q5 = getDrawable(R.drawable.q1q5);
+
+        initials.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (event == null) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        // Capture soft enters in a singleLine EditText that is the last EditText.
+                        Toast.makeText(v.getContext(), "Correct!", Toast.LENGTH_SHORT).show();
+
+                    } else if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                        // Capture soft enters in other singleLine EditTexts
+                    } else {
+                        return false;  // Let system handle all other null KeyEvents
+                    }
+                }
+                return true;  // Added return statement for when event is null and action is DONE or NEXT
+            }
+        });
+
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 checkAndSaveHighScore();
                 Intent menu = new Intent(MainActivity.this, MainMenuActivity.class);
+                DatabaseReference myRef = database.getReference("highscore");
+                myRef.setValue("Hello, World!");
                 startActivity(menu);
                 finish();
             }
@@ -140,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     circle.setVisibility(View.INVISIBLE);
                     countdown.setVisibility(View.INVISIBLE);
                     share.setVisibility(View.VISIBLE);
-
+                    initials.setVisibility(View.VISIBLE);
                     return;
                 }
                 Statement.setText(questions[questionNum].getStatement());
@@ -181,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                     circle.setVisibility(View.INVISIBLE);
                     countdown.setVisibility(View.INVISIBLE);
                     share.setVisibility(View.VISIBLE);
-
+                    initials.setVisibility(View.VISIBLE);
                     return;
                 }
                 Statement.setText(questions[questionNum].getStatement());
@@ -231,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
                     circle.setVisibility(View.INVISIBLE);
                     countdown.setVisibility(View.INVISIBLE);
                     share.setVisibility(View.VISIBLE);
+                    initials.setVisibility(View.VISIBLE);
                 }
             }
         }.start();
